@@ -1,0 +1,38 @@
+# BEGIN Security
+
+# Don't pass traffic between networks or act as a router
+net.ipv4.conf.all.send_redirects = <%= node["sysctl"]["net.ipv4.conf.all.send_redirects"] %>
+net.ipv4.conf.default.send_redirects = <%= node["sysctl"]["net.ipv4.conf.default.send_redirects"] %>
+
+# Ignore ping broadcasts (smurf attack)
+net.ipv4.icmp_echo_ignore_broadcasts = <%= node["sysctl"]["net.ipv4.icmp_echo_ignore_broadcasts"] %>
+
+# Enable protection for bad icmp error messages
+net.ipv4.icmp_ignore_bogus_error_responses = <%= node["sysctl"]["net.ipv4.icmp_ignore_bogus_error_responses"] %>
+
+# Turn on syncookies for SYN flood attack protection
+net.ipv4.tcp_syncookies = <%= node["sysctl"]["net.ipv4.tcp_syncookies"] %>
+
+# Log spoofed, source routed, and redirect packets
+net.ipv4.conf.all.log_martians = <%= node["sysctl"]["net.ipv4.conf.all.log_martians"] %>
+net.ipv4.conf.default.log_martians = <%= node["sysctl"]["net.ipv4.conf.default.log_martians"] %>
+
+# Do not accept source routing
+net.ipv4.conf.all.accept_source_route = <%= node["sysctl"]["net.ipv4.conf.all.accept_source_route"] %>
+net.ipv4.conf.default.accept_source_route = <%= node["sysctl"]["net.ipv4.conf.default.accept_source_route"] %>
+
+# Turn on reverse path filtering
+net.ipv4.conf.all.rp_filter = <%= node["sysctl"]["net.ipv4.conf.all.rp_filter"] %>
+net.ipv4.conf.default.rp_filter = <%= node["sysctl"]["net.ipv4.conf.default.rp_filter"] %>
+
+# Don't allow outsiders to alter the routing tables
+net.ipv4.conf.all.accept_redirects = <%= node["sysctl"]["net.ipv4.conf.all.accept_redirects"] %>
+net.ipv4.conf.default.accept_redirects = <%= node["sysctl"]["net.ipv4.conf.default.accept_redirects"] %>
+net.ipv4.conf.all.secure_redirects = <%= node["sysctl"]["net.ipv4.conf.all.secure_redirects"] %>
+net.ipv4.conf.default.secure_redirects = <%= node["sysctl"]["net.ipv4.conf.default.secure_redirects"] %>
+
+# END Security
+
+# Needed for redis
+vm.overcommit_memory = <%= node["sysctl"]["vm.overcommit_memory"] %>
+# END Needed for redis
